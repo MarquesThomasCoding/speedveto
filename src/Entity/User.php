@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_UUID', fields: ['uuid'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[ApiResource()]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -20,8 +20,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
-    private ?string $uuid = null;
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
     /**
      * @var list<string> The user roles
