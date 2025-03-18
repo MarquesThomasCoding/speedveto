@@ -9,9 +9,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
+#[ApiFilter(DateFilter::class, properties: ['creationDate'])]
 class Consultation
 {
     #[ORM\Id]
