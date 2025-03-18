@@ -8,25 +8,41 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    operations: [
+        new GetCollection(),
+        new Get()
+    ],
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']]
+)]
 class Animal
 {
+    #[Groups('read')]
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(['read', 'write'])]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Groups(['read', 'write'])]
     #[ORM\Column(length: 255)]
     private ?string $species = null;
 
+    #[Groups(['read', 'write'])]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $birthdate = null;
 
+    #[Groups(['read', 'write'])]
     #[ORM\OneToOne(inversedBy: 'animal', cascade: ['persist', 'remove'])]
     private ?Media $photo = null;
 
