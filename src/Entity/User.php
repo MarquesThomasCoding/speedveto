@@ -74,7 +74,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Consultation>
      */
     #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'assistant')]
-    #[Groups('read','write')]
     private Collection $consultations;
 
     public function __construct()

@@ -2,8 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Enum\ConsultationStatus;
 use App\Repository\ConsultationRepository;
+use App\State\ConsultationStatusCheckerProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -11,25 +17,17 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Delete;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
-    operations: [
-        new Get(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')", securityMessage: "Vous n'avez pas les droits pour accéder à cette consultation"),
-        new GetCollection(security: "is_granted('ROLE_VETERINARIAN')", securityMessage: "Vous n'avez pas les droits pour accéder à cette consultation"),
-        new Post(security: "is_granted('ROLE_ASSISTANT')", securityMessage: "Vous n'avez pas les droits pour accéder à cette consultation"),
-        new Put(security: "is_granted('ROLE_ASSISTANT') and consultation.status != 'done'", securityMessage: "Vous n'avez pas les droits pour modifier cette consultation car vous n'êtes pas un assistant ou car la consultation est déjà terminée"),
-        new Patch(security: "is_granted('ROLE_ASSISTANT') and consultation.status != 'done'", securityMessage: "Vous n'avez pas les droits pour modifier cette consultation car vous n'êtes pas un assistant ou car la consultation est déjà terminée"),
-        new Delete(),
-    ],
     normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']],
+    denormalizationContext: ['groups' => ['write']]
 )]
+#[Get(security: "is_granted('ROLE_ASSISTANT')")]
+#[GetCollection(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
+#[Patch(processor: ConsultationStatusCheckerProcessor::class, security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
+#[Delete(security: "is_granted('ROLE_ASSISTANT')")]
+#[Post(security: "is_granted('ROLE_ASSISTANT')")]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
 #[ApiFilter(DateFilter::class, properties: ['creationDate'])]
 class Consultation
@@ -45,7 +43,7 @@ class Consultation
     private ?\DateTimeInterface $creationDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['read'])]
+    #[Groups(['read', 'write'])]
     private ?\DateTimeInterface $consultationDate = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -69,7 +67,7 @@ class Consultation
     /**
      * @var Collection<int, Treatment>
      */
-    #[ORM\ManyToMany(targetEntity: Treatment::class, inversedBy: 'consultations')]  
+    #[ORM\ManyToMany(targetEntity: Treatment::class, inversedBy: 'consultations')]
     #[Groups(['read', 'write'])]
     private Collection $treatment;
 
