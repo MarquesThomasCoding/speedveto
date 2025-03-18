@@ -2,16 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AnimalRepository;
+use App\Repository\TreatmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
 
-#[ORM\Entity(repositoryClass: AnimalRepository::class)]
-#[ApiResource()]
-class Animal
+#[ORM\Entity(repositoryClass: TreatmentRepository::class)]
+class Treatment
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,19 +18,19 @@ class Animal
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $species = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $birthdate = null;
+    #[ORM\Column]
+    private ?float $price = null;
 
-    #[ORM\OneToOne(inversedBy: 'animal', cascade: ['persist', 'remove'])]
-    private ?Media $photo = null;
+    #[ORM\Column]
+    private ?int $duration = null;
 
     /**
      * @var Collection<int, Consultation>
      */
-    #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'animal', orphanRemoval: true)]
+    #[ORM\ManyToMany(targetEntity: Consultation::class, mappedBy: 'treatment')]
     private Collection $consultations;
 
     public function __construct()
@@ -58,38 +55,38 @@ class Animal
         return $this;
     }
 
-    public function getSpecies(): ?string
+    public function getDescription(): ?string
     {
-        return $this->species;
+        return $this->description;
     }
 
-    public function setSpecies(string $species): static
+    public function setDescription(?string $description): static
     {
-        $this->species = $species;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getPrice(): ?float
     {
-        return $this->birthdate;
+        return $this->price;
     }
 
-    public function setBirthdate(\DateTimeInterface $birthdate): static
+    public function setPrice(float $price): static
     {
-        $this->birthdate = $birthdate;
+        $this->price = $price;
 
         return $this;
     }
 
-    public function getPhoto(): ?Media
+    public function getDuration(): ?int
     {
-        return $this->photo;
+        return $this->duration;
     }
 
-    public function setPhoto(?Media $photo): static
+    public function setDuration(int $duration): static
     {
-        $this->photo = $photo;
+        $this->duration = $duration;
 
         return $this;
     }
@@ -106,7 +103,7 @@ class Animal
     {
         if (!$this->consultations->contains($consultation)) {
             $this->consultations->add($consultation);
-            $consultation->setAnimal($this);
+            $consultation->addTreatment($this);
         }
 
         return $this;
@@ -115,10 +112,7 @@ class Animal
     public function removeConsultation(Consultation $consultation): static
     {
         if ($this->consultations->removeElement($consultation)) {
-            // set the owning side to null (unless already changed)
-            if ($consultation->getAnimal() === $this) {
-                $consultation->setAnimal(null);
-            }
+            $consultation->removeTreatment($this);
         }
 
         return $this;
