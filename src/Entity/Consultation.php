@@ -49,6 +49,7 @@ class Consultation
     public function __construct()
     {
         $this->treatment = new ArrayCollection();
+        $this->creationDate = new \DateTime();
     }
 
     public function getId(): ?int
