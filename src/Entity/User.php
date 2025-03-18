@@ -48,12 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    #[Groups('read','write')]
-    private array $roles = [
-        'ROLE_ASSISTANT',
-        'ROLE_VETERINARIAN',
-        'ROLE_DIRECTOR',
-    ];
+    private array $roles = [];
 
     /**
      * @var string The hashed password
