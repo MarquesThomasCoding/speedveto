@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
+#[ApiResource()]
 class Media
 {
     #[ORM\Id]
