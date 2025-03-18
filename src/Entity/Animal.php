@@ -11,19 +11,21 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 #[ApiResource(
-    operations: [
-        new GetCollection(),
-        new Get(),
-        new Post()
-    ],
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']]
 )]
+#[Get()]
+#[GetCollection()]
+#[Patch(security: "is_granted('ROLE_ASSISTANT')")]
+#[Delete(security: "is_granted('ROLE_ASSISTANT')")]
+#[Post(security: "is_granted('ROLE_ASSISTANT')")]
 class Animal
 {
     #[Groups('read')]
