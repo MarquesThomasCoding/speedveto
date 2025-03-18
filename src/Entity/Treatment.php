@@ -2,13 +2,26 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\TreatmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']]
+)]
+#[Get(security: "is_granted('ROLE_VETERINARIAN')")]
+#[GetCollection(security: "is_granted('ROLE_VETERINARIAN')")]
+#[Patch(security: "is_granted('ROLE_VETERINARIAN')")]
+#[Delete(security: "is_granted('ROLE_VETERINARIAN')")]
+#[Post(security: "is_granted('ROLE_VETERINARIAN')")]
 #[ORM\Entity(repositoryClass: TreatmentRepository::class)]
 class Treatment
 {
