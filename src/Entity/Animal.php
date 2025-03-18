@@ -23,6 +23,9 @@ class Animal
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $birthdate = null;
 
+    #[ORM\OneToOne(inversedBy: 'animal', cascade: ['persist', 'remove'])]
+    private ?Media $photo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Animal
     public function setBirthdate(\DateTimeInterface $birthdate): static
     {
         $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?Media
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Media $photo): static
+    {
+        $this->photo = $photo;
 
         return $this;
     }
