@@ -29,7 +29,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[Delete(security: "is_granted('ROLE_ASSISTANT')")]
 #[Post(security: "is_granted('ROLE_ASSISTANT')")]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
-#[ApiFilter(DateFilter::class, properties: ['creationDate'])]
+#[ApiFilter(DateFilter::class, properties: ['creationDate', 'consultationDate'])]
 class Consultation
 {
     #[ORM\Id]
