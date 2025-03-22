@@ -42,17 +42,20 @@ class ConsultationStatusCheckerProcessor implements ProcessorInterface
         }
 
         if ($this->security->isGranted('ROLE_VETERINARIAN')) {
-            // Les vétérinaires ne peuvent modifier que le statut
             $originalData = $context['previous_data'] ?? null;
 
             if ($originalData instanceof Consultation) {
+                // On autorise toujours la modification si la consultation n'a pas de vétérinaire
+                if ($originalData->getVeterinarian() === null) {
+                    return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+                }
+                
+                // Sinon on vérifie si seul le statut est modifié
                 if ($originalData->getStatus() !== $data->getStatus()) {
-                    // Si seul le statut est modifié, continuez le processus
                     return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
                 }
 
-                // Si d'autres champs sont modifiés, lancez une exception
-                throw new BadRequestException('Veterinarians are only allowed to modify the status.');
+                throw new BadRequestException('Veterinarians can only modify the status or take unassigned consultations.');
             }
 
             throw new BadRequestException('Original data not found for comparison.');

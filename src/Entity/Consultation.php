@@ -10,6 +10,8 @@ use ApiPlatform\Metadata\Post;
 use App\Enum\ConsultationStatus;
 use App\Repository\ConsultationRepository;
 use App\State\ConsultationStatusCheckerProcessor;
+use App\State\ConsultationVeterinarianAttributionProcessor;
+use App\State\ChainConsultationProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -25,7 +27,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 #[Get(security: "is_granted('ROLE_ASSISTANT')")]
 #[GetCollection(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
-#[Patch(processor: ConsultationStatusCheckerProcessor::class, security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
+#[Patch(
+    processor: ChainConsultationProcessor::class,
+    security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')"
+)]
 #[Delete(security: "is_granted('ROLE_ASSISTANT')")]
 #[Post(security: "is_granted('ROLE_ASSISTANT')")]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
@@ -60,7 +65,7 @@ class Consultation
     private ?User $assistant = null;
 
     #[ORM\ManyToOne(inversedBy: 'consultations')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['read', 'write'])]
     private ?User $veterinarian = null;
 
