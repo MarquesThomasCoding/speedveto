@@ -7,7 +7,6 @@ enum ConsultationStatus: string
     case PROGRAMMED = 'programmed';
     case IN_PROGRESS = 'in_progress';
     case DONE = 'done';
-    case CANCELLED = 'cancelled';
 
     public function getLabel(): string
     {
@@ -15,7 +14,6 @@ enum ConsultationStatus: string
             self::PROGRAMMED => 'Programmé',
             self::IN_PROGRESS => 'En cours',
             self::DONE => 'Terminé',
-            self::CANCELLED => 'Annulé',
         };
     }
 
