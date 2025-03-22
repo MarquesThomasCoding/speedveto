@@ -14,27 +14,41 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Put;
-
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use App\Entity\Client;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 #[ApiResource(
-    operations: [
-        new Get(),
-        new GetCollection(),
-        new Patch(),
-        new Delete(),
-        new Post(security: "is_granted('ROLE_ASSISTANT')"),
-        new Put(),
-    ],
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']]
 )]
-#[Get()]
-#[GetCollection()]
-#[Patch(security: "is_granted('ROLE_ASSISTANT')")]
-#[Delete(security: "is_granted('ROLE_ASSISTANT')")]
-#[Post(security: "is_granted('ROLE_ASSISTANT')")]
+#[ApiFilter(SearchFilter::class, properties: ['owner' => 'exact'])]
+#[Get(
+    security: "is_granted('ROLE_ASSISTANT')",
+    securityMessage: 'Only assistants can see animals.'
+)]
+#[GetCollection(
+    security: "is_granted('ROLE_ASSISTANT')",
+    securityMessage: 'Only assistants can list animals.'
+)]
+#[Post(
+    security: "is_granted('ROLE_ASSISTANT')",
+    securityMessage: 'Only assistants can create animals.'
+)]
+#[Put(
+    security: "is_granted('ROLE_ASSISTANT')",
+    securityMessage: 'Only assistants can edit animals.'
+)]
+#[Patch(
+    security: "is_granted('ROLE_ASSISTANT')",
+    securityMessage: 'Only assistants can edit animals.'
+)]
+#[Delete(
+    security: "is_granted('ROLE_ASSISTANT')",
+    securityMessage: 'Only assistants can delete animals.'
+)]
 class Animal
 {
     #[Groups('read')]
@@ -64,6 +78,11 @@ class Animal
      */
     #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'animal', orphanRemoval: true)]
     private Collection $consultations;
+
+    #[ORM\ManyToOne(targetEntity: Client::class)]
+    #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id', nullable: false)]
+    #[Groups(['read', 'write'])]
+    private ?Client $owner = null;
 
     public function __construct()
     {
@@ -150,6 +169,17 @@ class Animal
             }
         }
 
+        return $this;
+    }
+
+    public function getOwner(): ?Client
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Client $owner): static
+    {
+        $this->owner = $owner;
         return $this;
     }
 }

@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Enum\ConsultationStatus;
+use App\Enum\ConsultationBuyStatus;
 use App\Repository\ConsultationRepository;
 use App\State\ConsultationStatusCheckerProcessor;
 use App\State\ConsultationVeterinarianAttributionProcessor;
@@ -79,6 +80,14 @@ class Consultation
     #[ORM\Column(type: Types::STRING, enumType: ConsultationStatus::class)]
     #[Groups(['read', 'write'])]
     private ConsultationStatus $status;
+
+    #[ORM\Column(type: Types::FLOAT, nullable: true)]
+    #[Groups(['read', 'write'])]
+    private ?float $priceClient = null;
+
+    #[ORM\Column(type: Types::STRING, enumType: ConsultationBuyStatus::class)]
+    #[Groups(['read'])]
+    private ConsultationBuyStatus $buyStatus = ConsultationBuyStatus::REMAINED;
 
     public function __construct()
     {
@@ -175,6 +184,7 @@ class Consultation
     {
         if (!$this->treatment->contains($treatment)) {
             $this->treatment->add($treatment);
+            $this->updateBuyStatus();
         }
 
         return $this;
@@ -182,7 +192,9 @@ class Consultation
 
     public function removeTreatment(Treatment $treatment): static
     {
-        $this->treatment->removeElement($treatment);
+        if ($this->treatment->removeElement($treatment)) {
+            $this->updateBuyStatus();
+        }
 
         return $this;
     }
@@ -197,5 +209,34 @@ class Consultation
         $this->status = $status;
 
         return $this;
+    }
+
+    public function getPriceClient(): ?float
+    {
+        return $this->priceClient;
+    }
+
+    public function setPriceClient(?float $priceClient): static
+    {
+        $this->priceClient = $priceClient;
+        $this->updateBuyStatus();
+        return $this;
+    }
+
+    public function getBuyStatus(): ConsultationBuyStatus
+    {
+        return $this->buyStatus;
+    }
+
+    private function updateBuyStatus(): void
+    {
+        $totalTreatmentsPrice = 0;
+        foreach ($this->treatment as $treatment) {
+            $totalTreatmentsPrice += $treatment->getPrice();
+        }
+
+        $this->buyStatus = ($this->priceClient !== null && $this->priceClient >= $totalTreatmentsPrice)
+            ? ConsultationBuyStatus::PAID
+            : ConsultationBuyStatus::REMAINED;
     }
 }

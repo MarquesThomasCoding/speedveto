@@ -26,7 +26,11 @@ use App\Enum\UserRole;
     denormalizationContext: ['groups' => ['write']],
     operations: [
         new GetCollection(security: "is_granted('ROLE_DIRECTOR')", securityMessage: 'You are not allowed to get users'),
-        new Post(security: "is_granted('ROLE_DIRECTOR')", securityMessage: 'You are not allowed to create an user', processor: UserPasswordHasherProcessor::class),
+        new Post(
+            security: "is_granted('ROLE_DIRECTOR') or !is_granted('IS_AUTHENTICATED')", 
+            securityMessage: 'You are not allowed to create an user',
+            processor: UserPasswordHasherProcessor::class
+        ),
         new Get(security: "is_granted('ROLE_DIRECTOR') or object == user", securityMessage: 'You are not allowed to get this user'),
         new Put(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_DIRECTOR') or object == user", securityMessage: 'You are not allowed to edit this user'),
         new Patch(processor: UserPasswordHasherProcessor::class, security: "is_granted('ROLE_DIRECTOR') or object == user", securityMessage: 'You are not allowed to edit this user'),
