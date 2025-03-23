@@ -21,13 +21,14 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Filter\TodayFilter;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']]
 )]
-#[Get(security: "is_granted('ROLE_ASSISTANT')")]
-#[GetCollection(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
+#[Get(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
+#[GetCollection(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN') or is_granted('ROLE_DIRECTOR')")]
 #[Patch(
     uriTemplate: '/consultations/{id}',
     processor: ChainConsultationProcessor::class,
@@ -44,6 +45,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
 #[ApiFilter(DateFilter::class, properties: ['creationDate', 'consultationDate'])]
+#[ApiFilter(TodayFilter::class)]
 class Consultation
 {
     #[ORM\Id]
