@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -10,7 +15,29 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']]
+    denormalizationContext: ['groups' => ['write']],
+    operations: [
+        new Get(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: "Only assistants can access clients."
+        ),
+        new GetCollection(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: "Only assistants can access clients."
+        ),
+        new Post(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: "Only assistants can create clients."
+        ),
+        new Patch(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: "Only assistants can update clients."
+        ),
+        new Delete(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: "Only assistants can delete clients."
+        )
+    ]
 )]
 class Client
 {
