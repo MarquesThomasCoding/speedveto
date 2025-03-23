@@ -19,7 +19,7 @@ This project is a Symfony API for managing a veterinary clinic. There are 4 type
 - create a new animal (POST /animals)
 
 **ROLE_VETERINARIAN:**
-- list all consultations of the day (GET /consultations)
+- list all consultations of the day (GET /consultations) with parameter `consultationDate=today`
 - see consultation details (GET /consultations/{id})
 - attribute a consultation to himself (PATCH /consultations/{id} with parameter `veterinarian`)
 - update consultation status (PATCH /consultations/{id} with parameter `status`)
