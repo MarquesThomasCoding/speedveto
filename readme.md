@@ -76,6 +76,31 @@ or
 symfony serve
 ```
 
+Next, we need to create a migration (create your own database) using this :
+
+```bash
+php bin/console make:migration
+```
+
+and then the code will ask to run this code : 
+
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
+In your PhpMyAdmin, in the database created by this project you need to create a director role directly into "User" table (since we cannot create a ROLE_DIRECTOR directly by using endpoint) and use this code :
+
+```sql
+INSERT INTO user (email, password, roles, firstname, lastname) 
+VALUES ('admin@gmail.com', 
+        '$2y$13$rPdc5j9HV38nIsdkkf6K9uOOQHBoUgLMBfk1wWxJHAcfH5uqXEjT', 
+        '["ROLE_DIRECTOR"]', 
+        'Test', 
+        'Test');
+```
+
+The password for the director role will be "123" and the email is "admin@gmail.com". Feel free to change this code.
+
 ## Project members
 
 - Thomas MARQUES
