@@ -27,7 +27,7 @@ use App\Enum\UserRole;
     operations: [
         new GetCollection(security: "is_granted('ROLE_DIRECTOR')", securityMessage: 'You are not allowed to get users'),
         new Post(
-            security: "is_granted('ROLE_DIRECTOR') or !is_granted('IS_AUTHENTICATED')", 
+            security: "is_granted('ROLE_DIRECTOR')", 
             securityMessage: 'You are not allowed to create an user',
             processor: UserPasswordHasherProcessor::class
         ),
