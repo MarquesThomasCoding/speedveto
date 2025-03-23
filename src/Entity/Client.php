@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -10,7 +15,29 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
-    denormalizationContext: ['groups' => ['write']]
+    denormalizationContext: ['groups' => ['write']],
+    operations: [
+        new Post(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: 'You are not allowed to create a client'
+        ),
+        new GetCollection(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: 'You are not allowed to list clients'
+        ),
+        new Get(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: 'You are not allowed to get this client'
+        ),
+        new Patch(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: 'You are not allowed to edit this client'
+        ),
+        new Delete(
+            security: "is_granted('ROLE_ASSISTANT')",
+            securityMessage: 'You are not allowed to delete this client'
+        )
+    ]
 )]
 class Client
 {
