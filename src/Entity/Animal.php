@@ -80,9 +80,10 @@ class Animal
     #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'animal', orphanRemoval: true)]
     private Collection $consultations;
 
-    #[ORM\ManyToOne(targetEntity: Client::class, cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: Client::class)]
     #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['read', 'write'])]
+    #[Assert\NotNull]
     private ?Client $owner = null;
 
     public function __construct()
