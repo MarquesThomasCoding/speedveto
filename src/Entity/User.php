@@ -18,6 +18,7 @@ use ApiPlatform\Metadata\Delete;
 use App\State\UserPasswordHasherProcessor;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Enum\UserRole;
+use App\Validator\Constraints\AllowedRoles;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -54,6 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Groups(['read', 'write'])]
+    #[AllowedRoles]
     private array $roles = [];
 
     /**
