@@ -1,9 +1,49 @@
 # Projet SPEEDVETO : API using Symfony for managing a veterinary clinic
 
 ## Features
-## POSTMAN link
 
-https://iimcreationapi.postman.co/workspace/IIM_Creation_API-Workspace~5b8db35d-d315-4e5e-847b-5d322cc1be35/request/33050448-d0a7484d-9296-4893-a526-fd54afa06ea4?action=share&creator=43206096&ctx=documentation
+This project is a Symfony API for managing a veterinary clinic. There are 4 types of users :
+- le directeur de la clinique (ROLE_DIRECTOR),
+- les vétérinaires (ROLE_VETERINARIAN),
+- les assistants vétérinaires (ROLE_ASSISTANT),
+- les clients (toute personne non authentifiée et considérée comme un client).
+
+**ROLE_ASSISTANT:**
+- create a new consultation (POST /consultations)
+  - Datetime is automatically set to the current datetime
+  - Consultation status can be set to "programmed", "in_progress" or "done"
+
+- update a consultation (PATCH /consultations/{id}) if status is not "done"
+- set consultation's payment (PATCH /consultations/{id} with parameter `price_client`)
+- see consultation details (GET /consultations/{id})
+- create a new animal (POST /animals)
+
+**ROLE_VETERINARIAN:**
+- list all consultations of the day (GET /consultations)
+- see consultation details (GET /consultations/{id})
+de s'attribuer un rendez-vous
+- attribute a consultation to himself (PATCH /consultations/{id} with parameter `veterinarian`)
+- update consultation status (PATCH /consultations/{id} with parameter `status`)
+- create treatment (POST /treatments)
+- list all treatments (GET /treatments)
+- see treatment details (GET /treatments/{id})
+- update treatment (PATCH /treatments/{id})
+- delete treatment (DELETE /treatments/{id})
+
+**ROLE_DIRECTOR:**
+- create a new user (POST /users) except for ROLE_DIRECTOR
+- list all users (GET /users)
+- see user details (GET /users/{id})
+- update user (PATCH /users/{id})
+- delete user (DELETE /users/{id})
+
+**ROLE_ASSISTANT, ROLE_VETERINARIAN & ROLE_DIRECTOR:**
+<!-- de consulter l'historique des rendez-vous sur une période donnée. -->
+- list consultations' history (GET /consultations/history) with parameters `consultationDate[before]` and `consultationDate[after]`
+
+## Postman
+
+The postman collection is available in this github repository. You need to import the `SpeedVeto.postman_collection.json` file in your postman application.
 
 ## Utilisation
 
