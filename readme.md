@@ -65,6 +65,9 @@ and you need to install all dependences using this
 ```bash 
 composer install
 ```
+
+then copy the .env.example into `.env.local` and change the JWT_PASSPHRASE to your own passphrase. You'll also need to update the DATABASE_URL to your own database in the `.env`
+
 after that run you need to run by using this command
 
 ```bash
