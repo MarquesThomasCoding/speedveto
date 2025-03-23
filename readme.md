@@ -3,14 +3,14 @@
 ## Features
 
 This project is a Symfony API for managing a veterinary clinic. There are 4 types of users :
-- le directeur de la clinique (ROLE_DIRECTOR),
-- les vétérinaires (ROLE_VETERINARIAN),
-- les assistants vétérinaires (ROLE_ASSISTANT),
-- les clients (toute personne non authentifiée et considérée comme un client).
+- Clinic's director (ROLE_DIRECTOR),
+- Veterinarians (ROLE_VETERINARIAN),
+- Assistants (ROLE_ASSISTANT),
+- Clients (from table `clients`)
 
 **ROLE_ASSISTANT:**
 - create a new consultation (POST /consultations)
-  - Datetime is automatically set to the current datetime
+  - Creation date is automatically set to the current datetime
   - Consultation status can be set to "programmed", "in_progress" or "done"
 
 - update a consultation (PATCH /consultations/{id}) if status is not "done"
@@ -21,7 +21,6 @@ This project is a Symfony API for managing a veterinary clinic. There are 4 type
 **ROLE_VETERINARIAN:**
 - list all consultations of the day (GET /consultations)
 - see consultation details (GET /consultations/{id})
-de s'attribuer un rendez-vous
 - attribute a consultation to himself (PATCH /consultations/{id} with parameter `veterinarian`)
 - update consultation status (PATCH /consultations/{id} with parameter `status`)
 - create treatment (POST /treatments)
@@ -38,7 +37,6 @@ de s'attribuer un rendez-vous
 - delete user (DELETE /users/{id})
 
 **ROLE_ASSISTANT, ROLE_VETERINARIAN & ROLE_DIRECTOR:**
-<!-- de consulter l'historique des rendez-vous sur une période donnée. -->
 - list consultations' history (GET /consultations/history) with parameters `consultationDate[before]` and `consultationDate[after]`
 
 ## Postman
