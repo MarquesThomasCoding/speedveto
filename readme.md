@@ -14,7 +14,7 @@ This project is a Symfony API for managing a veterinary clinic. There are 4 type
   - Consultation status can be set to "programmed", "in_progress" or "done"
 
 - update a consultation (PATCH /consultations/{id}) if status is not "done"
-- set consultation's payment (PATCH /consultations/{id} with parameter `priceClient`)
+- set consultation's payment (PATCH /consultations/{id} with parameter `priceClient` (give the total amount the consultation is already paid) and `buyStatus` (say if the consultation is totally paid or not))
 - see consultation details (GET /consultations/{id})
 - create a new animal (POST /animals)
 
