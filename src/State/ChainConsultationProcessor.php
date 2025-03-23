@@ -27,16 +27,15 @@ class ChainConsultationProcessor implements ProcessorInterface
                 'context' => $context
             ]);
 
-            // Exécute le status checker
+            // Si c'est l'opération d'attribution au vétérinaire
+            if ($operation->getName() === 'attribute_veterinarian') {
+                $this->logger->info('Exécution du VeterinarianAttributionProcessor');
+                return $this->veterinarianProcessor->process($data, $operation, $uriVariables, $context);
+            }
+
+            // Sinon, c'est une mise à jour normale
             $this->logger->info('Exécution du StatusCheckerProcessor');
-            $data = $this->statusProcessor->process($data, $operation, $uriVariables, $context);
-            
-            // Exécute le veterinarian attribution
-            $this->logger->info('Exécution du VeterinarianAttributionProcessor');
-            $result = $this->veterinarianProcessor->process($data, $operation, $uriVariables, $context);
-            
-            $this->logger->info('ChainConsultationProcessor terminé avec succès');
-            return $result;
+            return $this->statusProcessor->process($data, $operation, $uriVariables, $context);
             
         } catch (\Exception $e) {
             $this->logger->error('Erreur dans ChainConsultationProcessor: ' . $e->getMessage(), [

@@ -29,11 +29,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[Get(security: "is_granted('ROLE_ASSISTANT')")]
 #[GetCollection(security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')")]
 #[Patch(
+    uriTemplate: '/consultations/{id}',
     processor: ChainConsultationProcessor::class,
-    security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')"
+    security: "is_granted('ROLE_ASSISTANT') or is_granted('ROLE_VETERINARIAN')",
+    name: 'update_consultation'
 )]
 #[Delete(security: "is_granted('ROLE_ASSISTANT')")]
 #[Post(security: "is_granted('ROLE_ASSISTANT')")]
+#[Patch(
+    uriTemplate: '/consultations/{id}/attribute',
+    processor: ConsultationVeterinarianAttributionProcessor::class,
+    security: "is_granted('ROLE_VETERINARIAN')",
+    name: 'attribute_veterinarian'
+)]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
 #[ApiFilter(DateFilter::class, properties: ['creationDate', 'consultationDate'])]
 class Consultation

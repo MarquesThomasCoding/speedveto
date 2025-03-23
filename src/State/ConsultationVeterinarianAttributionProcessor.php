@@ -27,6 +27,10 @@ class ConsultationVeterinarianAttributionProcessor implements ProcessorInterface
 
         $user = $this->security->getUser();
 
+        if ($this->security->isGranted('ROLE_ASSISTANT')) {
+            return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
+        }
+
         if($this->security->isGranted('ROLE_VETERINARIAN')) {
             if ($data->getVeterinarian() === null) {
                 $data->setVeterinarian($user);
