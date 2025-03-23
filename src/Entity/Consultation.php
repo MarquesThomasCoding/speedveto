@@ -21,7 +21,6 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\Filter\TodayFilter;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
@@ -37,7 +36,6 @@ use App\Filter\TodayFilter;
 #[Post(security: "is_granted('ROLE_ASSISTANT')")]
 #[ORM\Entity(repositoryClass: ConsultationRepository::class)]
 #[ApiFilter(DateFilter::class, properties: ['creationDate', 'consultationDate'])]
-#[ApiFilter(TodayFilter::class)]
 class Consultation
 {
     #[ORM\Id]
