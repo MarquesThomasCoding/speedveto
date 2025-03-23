@@ -32,7 +32,9 @@ class ConsultationVeterinarianAttributionProcessor implements ProcessorInterface
         }
 
         if($this->security->isGranted('ROLE_VETERINARIAN')) {
-            if ($data->getVeterinarian() === null) {
+            $originalData = $context['previous_data'] ?? null;
+
+            if ($originalData instanceof Consultation && $originalData->getVeterinarian() === null) {
                 $data->setVeterinarian($user);
                 return $this->persistProcessor->process($data, $operation, $uriVariables, $context);
             }
