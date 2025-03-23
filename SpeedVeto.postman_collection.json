@@ -1,0 +1,1139 @@
+{
+	"info": {
+		"_postman_id": "17868bba-cb9d-4f39-a027-458a1ca0d051",
+		"name": "SpeedVeto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33050448",
+		"_collection_link": "https://iimcreationapi.postman.co/workspace/IIM_Creation_API-Workspace~5b8db35d-d315-4e5e-847b-5d322cc1be35/collection/33050448-17868bba-cb9d-4f39-a027-458a1ca0d051?action=share&source=collection_link&creator=33050448"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDM3NjksImV4cCI6MTc0Mjc0NzM2OSwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiQXNzaXN0YW50In0.es4_s6G2-vgFS5XdC1Gh1C0h_Kx2BJuQq5QqCr4XYKcwNwqAOlcLZp4PZ34rGxy62BKGOHtQgaSr0QPc1hmPy0K-5XGVj8cY7-QJSQuGUJHeejX9tHqq7bB7C2OZFx_LsmGb5mw63HvgJqqJvBafo5QF9ZerOMvytiar-cqtjiC2w6GPVibiE_8MRwxaHZfndTkbrciy5FeBd4eOerQGp5guX-Z5zR3Jod8a7rFSuJXu49kBgp8NfnRoHtSgnH1MCBVdktVNawK0MwnE3wYa8MkhE4V-ufDJyTPKV-Xd_ImD5ICOUbNxDBvrx5Td2UOY9BRZ_VN8AhjZiFP50wuW7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/users/{{user_id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDM3NjksImV4cCI6MTc0Mjc0NzM2OSwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiQXNzaXN0YW50In0.es4_s6G2-vgFS5XdC1Gh1C0h_Kx2BJuQq5QqCr4XYKcwNwqAOlcLZp4PZ34rGxy62BKGOHtQgaSr0QPc1hmPy0K-5XGVj8cY7-QJSQuGUJHeejX9tHqq7bB7C2OZFx_LsmGb5mw63HvgJqqJvBafo5QF9ZerOMvytiar-cqtjiC2w6GPVibiE_8MRwxaHZfndTkbrciy5FeBd4eOerQGp5guX-Z5zR3Jod8a7rFSuJXu49kBgp8NfnRoHtSgnH1MCBVdktVNawK0MwnE3wYa8MkhE4V-ufDJyTPKV-Xd_ImD5ICOUbNxDBvrx5Td2UOY9BRZ_VN8AhjZiFP50wuW7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8000/api/users/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"email\": \"director@gmail.com\",\r\n    // \"email\": \"veterinarian@gmail.com\",\r\n    \"email\": \"assistant@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/auth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"assistant@speedveto.fr\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8000/api/auth",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Post Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"veterinarian@speedveto.fr\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8000/api/auth",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Post Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"director@speedveto.fr\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8000/api/auth",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Post User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDM4NzIsImV4cCI6MTc0Mjc0NzQ3Miwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiQXNzaXN0YW50In0.GHqJNKcbFQ4gx5vNUbfRIMLKAhhSG2iqWrgnN8pbEbFOTB20MGP5MoIDPfshPs1euyFSHKNm04dd8TuwsD4itRDrI9MCA6Wr0C1SUXVTnwn3pZhLSZCyH3IEJXRagZ4Qam-WAuWaxnF6cpGP026ehST-v7Kc0E8Wxk6UJqMm912CvFE-gzmUkXW4OAioZOdvspgSm9V41F8-LMqyv8X7PYiN8-J-jGNt8ecNeVqBlWJknB3Oh7ddBQxg6EJwDzEfWSbin8ltqA_e5FsfqJZFOdmjU4fIUnt_RUWeoBgMgHXOGdok9OoF0VeshxqoGYKurCyf5-xYimlDigH41_K1_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"assistant2@speedveto.fr\",\r\n    \"plainPassword\": \"12345678\",\r\n    \"firstname\": \"Test\",\r\n    \"lastname\": \"Test\",\r\n    \"roles\": [\"ROLE_ASSISTANT\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"assistant@speedveto.fr\",\r\n    \"plainPassword\": \"12345678\",\r\n    \"firstname\": \"Assistant\",\r\n    \"lastname\": \"SpeedVeto\",\r\n    \"roles\": [\"ROLE_ASSISTANT\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8000/api/users",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Post User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"veterinarian@speedveto.fr\",\r\n    \"plainPassword\": \"12345678\",\r\n    \"firstname\": \"Veterinaire\",\r\n    \"lastname\": \"SpeedVeto\",\r\n    \"roles\": [\"ROLE_VETERINARIAN\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8000/api/users",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Post User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"director@speedveto.fr\",\r\n    \"plainPassword\": \"12345678\",\r\n    \"firstname\": \"Directeur\",\r\n    \"lastname\": \"SpeedVeto\",\r\n    \"roles\": [\"ROLE_DIRECTOR\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8000/api/users",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Patch User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDM4NzIsImV4cCI6MTc0Mjc0NzQ3Miwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiQXNzaXN0YW50In0.GHqJNKcbFQ4gx5vNUbfRIMLKAhhSG2iqWrgnN8pbEbFOTB20MGP5MoIDPfshPs1euyFSHKNm04dd8TuwsD4itRDrI9MCA6Wr0C1SUXVTnwn3pZhLSZCyH3IEJXRagZ4Qam-WAuWaxnF6cpGP026ehST-v7Kc0E8Wxk6UJqMm912CvFE-gzmUkXW4OAioZOdvspgSm9V41F8-LMqyv8X7PYiN8-J-jGNt8ecNeVqBlWJknB3Oh7ddBQxg6EJwDzEfWSbin8ltqA_e5FsfqJZFOdmjU4fIUnt_RUWeoBgMgHXOGdok9OoF0VeshxqoGYKurCyf5-xYimlDigH41_K1_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Thomas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/users/{{user_id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a staff member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDQ0MTgsImV4cCI6MTc0Mjc0ODAxOCwicm9sZXMiOlsiUk9MRV9WRVRFUklOQVJJQU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ2ZXRlcmluYXJpYW5AZ21haWwuY29tIiwiZmlyc3RuYW1lIjoiVGVzdCJ9.DL3O1e9uVDs_3d6bgbkhVAw_QFNcusJk5_ZtNdMvD05Ovc0VgiMGU6zpPLDhiNXZgMwmyZM6IOA2qfpjv4sVNOnHJb6xdT0Dn2bxYMZAc3SmFgrQLAC-QLtTEuXcgqZ27SBa6wY5ee_KS2Ag06GE92rcW1GYKBNp9Fxf1GPgRR8vsOZj590rclWNKqQH_nXjwzyGrNVChA6hQbE-tHg1-wwNLudUqNHRqMMIeJ6_-B_BLAupTVkQNEzQe6LRAtIln1gTjVHLVE9m-v5w25N92CRXQBJye13fc7q5GaD_ioIHQJPijTnGfbIWwSEFYS70Xz_juOzz-Lpq9fwp1lVoPg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/users/{{user_id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Animal",
+			"item": [
+				{
+					"name": "Get Animal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/animals/{{id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"animals",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Animal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDM4NzIsImV4cCI6MTc0Mjc0NzQ3Miwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiQXNzaXN0YW50In0.GHqJNKcbFQ4gx5vNUbfRIMLKAhhSG2iqWrgnN8pbEbFOTB20MGP5MoIDPfshPs1euyFSHKNm04dd8TuwsD4itRDrI9MCA6Wr0C1SUXVTnwn3pZhLSZCyH3IEJXRagZ4Qam-WAuWaxnF6cpGP026ehST-v7Kc0E8Wxk6UJqMm912CvFE-gzmUkXW4OAioZOdvspgSm9V41F8-LMqyv8X7PYiN8-J-jGNt8ecNeVqBlWJknB3Oh7ddBQxg6EJwDzEfWSbin8ltqA_e5FsfqJZFOdmjU4fIUnt_RUWeoBgMgHXOGdok9OoF0VeshxqoGYKurCyf5-xYimlDigH41_K1_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lucky\",\r\n    \"species\": \"Chien - Coton de Tulear\",\r\n    \"birthdate\": \"2016-04-02\",\r\n    \"photo\": \"/api/media/1\",\r\n    \"owner\" : \"api/clients/1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/animals",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"animals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Animal",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lucky\",\r\n    \"species\": \"Chien - Coton de Tulear\",\r\n    \"birthdate\": \"2016-04-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/animals/{{id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"animals",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Animal",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/animals/{{id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"animals",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultation",
+			"item": [
+				{
+					"name": "Get Consultations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/consultations",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get consultations creation historic",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations?creationDate[after]=2024-01-13&creationDate[strictly_before]=2024-09-02",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "creationDate[after]",
+									"value": "2024-01-13"
+								},
+								{
+									"key": "creationDate[strictly_before]",
+									"value": "2024-09-02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get consultations historic",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI2NTU4NzEsImV4cCI6MTc0MjY1OTQ3MSwicm9sZXMiOlsiUk9MRV9WRVRFUklOQVJJQU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ2ZXRlcmluYXJpYW5AZ21haWwuY29tIiwiZmlyc3RuYW1lIjoiVGVzdCJ9.PZ23cQ7y6JHzFyy3sAXTGw-qfEI6XYxFdXU7SZLXYiOJBk-O3EbR6hx3Yy51FNP28e0I20FBZM_u5R7l5BGF7Neu3EXucBQT50VYtXj-tyiYUwFhf4gt3hE1hjcJKbha88E8pevEAqB4f9M3a0NbLCvow7MMdz-bx9s8Qhg3ic6vIlKXFg7Gv5E5LAyCG1tTgE8Qvnp4p1Hv-OnHkkWRlijstLqjam1dFJdENvYa2pSI5MxRfFld2YKTz0mjapravQhfrDI534RgicbYhqbdSZXBd5KNZeXV4d_KOg_QlOEHX1MCIXSQeYT5-jPPRpGb4LLTCDQdDWb3Q3NykEg_4g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations?consultationDate[after]=2023-01-13&consultationDate[before]=2027-09-02",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "consultationDate[after]",
+									"value": "2023-01-13"
+								},
+								{
+									"key": "consultationDate[before]",
+									"value": "2027-09-02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get today's appointments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDkyNDQsImV4cCI6MTc0Mjc1Mjg0NCwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAZ21haWwuY29tIiwiZmlyc3RuYW1lIjoiVGhvbWFzIn0.cE_tbJou71c7ztrY0oHxTZXiPi-sLOEdkY-0Cjaf2HhgdDlo-l50K6K3-xukzX7s5fz5lv_Xn-euPqmAbU-d0K067YhKqbH5FtaS8ypIR-72_EYGNKwYKJT-ISQVTSHIUB4O0jRw0dulA838R5E7CxTfI1VBawsGOzTQrAMt4hRpwT8eu4cdcUq9r9PYUaIVFDTpPEYgrU6934D2MOv3ChqGJDHci2anvX-FLYOfZMhkVxLufTyaCdKFGlTR3r-jnSdlbP6QA2WWBhvST70_HetQCkFRaA4AEkNAedQdDYqg3H_9a0HeZkpde5NzrgOtnWq8RWPe3_7_YJET02AWsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations?consultationDate=today",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "consultationDate",
+									"value": "today"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Consultation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI2NTM3NjksImV4cCI6MTc0MjY1NzM2OSwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAZ21haWwuY29tIiwiZmlyc3RuYW1lIjoiVGVzdCJ9.H10uVFowa4O3kY-DtRVdEOJthruMgG3PRWnLOLIgYFKJizsHJAcQkpRcxscMHZTIJ2fzqGe3HULZQorFw3fF-J73igScylekyfAcBNf9LDYvSWVPgI4ilgNheowVUTsEaXB8eHzgFr6xoJuobcl0dFM7MRuGwTYO63Iglo5um1AtHy8BsS8SroEeMy0KxEhyRZ7zeyiWcw39-6t-bmLYCcrUJlW_CeCGvlRDBFi-pW0n__EkTrQjx6cdMKqAS3kvOrTEv95Lf1yCSoa6f9RoZ9qrSJJABe5xk2INljZ8s0NPa10E5XXOZ3u26sToEcUNCDr8o_R1pGW2revqVnn4hw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/consultations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Consultation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDkyNDQsImV4cCI6MTc0Mjc1Mjg0NCwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAZ21haWwuY29tIiwiZmlyc3RuYW1lIjoiVGhvbWFzIn0.cE_tbJou71c7ztrY0oHxTZXiPi-sLOEdkY-0Cjaf2HhgdDlo-l50K6K3-xukzX7s5fz5lv_Xn-euPqmAbU-d0K067YhKqbH5FtaS8ypIR-72_EYGNKwYKJT-ISQVTSHIUB4O0jRw0dulA838R5E7CxTfI1VBawsGOzTQrAMt4hRpwT8eu4cdcUq9r9PYUaIVFDTpPEYgrU6934D2MOv3ChqGJDHci2anvX-FLYOfZMhkVxLufTyaCdKFGlTR3r-jnSdlbP6QA2WWBhvST70_HetQCkFRaA4AEkNAedQdDYqg3H_9a0HeZkpde5NzrgOtnWq8RWPe3_7_YJET02AWsw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"consultationDate\": \"2025-03-23\",\r\n    \"reason\": \"Test 2\",\r\n    \"animal\": \"/api/animals/1\",\r\n    \"assistant\": \"/api/users/4\",\r\n    \"veterinarian\": \"/api/users/5\",\r\n    // \"treatment\": [\"/api/treatments/1\"],\r\n    \"status\": \"programmed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Consultation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NTAwNjEsImV4cCI6MTc0Mjc1MzY2MSwicm9sZXMiOlsiUk9MRV9WRVRFUklOQVJJQU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ2ZXRlcmluYXJpYW5Ac3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiVmV0ZXJpbmFpcmUifQ.AuZJPlsNJp4XMjAbKwZuFkYvB7dJ1ywwmuzSl1lkJruqZw6zySAoplSe56FTtieoaBt-6Lei_lvdyR47L8_lrg6ERhv61o1KSGVYh6b9gLV6TS9w7M_OqOBAbxh8Gd2awJH8YBaOBvzy5MR0H2lGfrF7hWnvaWpI24EsRCVXdPMClr--ifxdevgBEVONIWkixq2ZqgNzqLCtcCflMcyYCBy4JEaHvDDLZDv97oWwFDNjZL_xl_CTWhNhcs-fiKV_sH5mYY1an1CokWumxFQZs3JZTPHl4CSQA7VyySv-77TMxX4uObZMD-mvHAuYyim2oZ_Diz_7tFikxmaiLHqLnw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"in_progress\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Consultation Veterinarian Attribution",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NTAwNjEsImV4cCI6MTc0Mjc1MzY2MSwicm9sZXMiOlsiUk9MRV9WRVRFUklOQVJJQU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ2ZXRlcmluYXJpYW5Ac3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiVmV0ZXJpbmFpcmUifQ.AuZJPlsNJp4XMjAbKwZuFkYvB7dJ1ywwmuzSl1lkJruqZw6zySAoplSe56FTtieoaBt-6Lei_lvdyR47L8_lrg6ERhv61o1KSGVYh6b9gLV6TS9w7M_OqOBAbxh8Gd2awJH8YBaOBvzy5MR0H2lGfrF7hWnvaWpI24EsRCVXdPMClr--ifxdevgBEVONIWkixq2ZqgNzqLCtcCflMcyYCBy4JEaHvDDLZDv97oWwFDNjZL_xl_CTWhNhcs-fiKV_sH5mYY1an1CokWumxFQZs3JZTPHl4CSQA7VyySv-77TMxX4uObZMD-mvHAuYyim2oZ_Diz_7tFikxmaiLHqLnw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "// reminder only work if and only if a consultation doesn't already have a veterinarian else doesn't work\r\n{\r\n    \"veterinarian\": \"/api/users/5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations/1/attribute",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations",
+								"1",
+								"attribute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch consultation payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NTEzNjcsImV4cCI6MTc0Mjc1NDk2Nywicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiVGhvbWFzIn0.lU3-UI0RGfd0FSFAj76vL4WkzhJaK9NpXVS4kgcCaBxSn2pjCawB4WD5wfLRbFJ-fOpVUHmdIps2xbk0MKlgsyYNcXY2qYBFKe8PYiS2_4jcB2UJngqOeDBT4h3GY6gnDed-U2CtZ1kmzubov26m-dZRyGAYrWGCcmQiPHNciPoF3gURPT-uLZdXQhputJV75Jrz3hYJ0mow8TCelLl9XzPCarF2OQ4VJtAFrAxH4movc9ECAEi0rS5mNBt6DcN10zgKh4I_07gEpyLUy_ZH3RJIch0mAAb0H1hfkFGQm7AXLhqxHBn6s8EpkY6kQ7O9s_xwgG-Y0QnmcR7r6341kg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"priceClient\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/consultations/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Treatment",
+			"item": [
+				{
+					"name": "Get treatments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/treatments",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get treatment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/treatments/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete treatment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/treatments/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create treatment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDIzMDk0NjAsImV4cCI6MTc0MjMxMzA2MCwicm9sZXMiOlsiUk9MRV9WRVRFUklOQVJJQU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ2ZXRlcmluYXJpYW5Ac3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiVmV0ZXJpbmFpcmUifQ.lV3gOQ9Dbjvm5cWJgSN46PeS_3rKdNs84wzifVuikfga6tNKXVj6MJ2JZkI-URdxhtCHQrt-9LdoaxptlWWG9CjjczpyEvodj3JJnexcxR2Q860kbtm2BW0m8ENN4NzmxD-F5BCms5F9ncXj5zeiumgHVoxTLUxuYS7-r4KOywgqvwqhqPy8lkWyqSMXf_UJ8viKfNIDHWtBKUM-WtGTlzIEqnCH8ViKjY17fe6IacnaRh8N2daW1XcMxF_zNjSd0GjqV3FbEJybVifFXrTxeJVqi1URzdkoN9K-Njqsr19UYTZxogyISMG7qs9vsxOM_nZ0sSp5p76vto1flK54Bg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test treatment\",\r\n    \"description\": \"Test\",\r\n    \"price\": 0,\r\n    \"duration\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/treatments",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update treatment",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/treatments/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"treatments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Media",
+			"item": [
+				{
+					"name": "Get Media",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8000/api/media/{{id}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"media",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/lucky/Downloads/Error.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://127.0.0.1:8000/api/media",
+							"protocol": "https",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"media"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Post Client",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDI3NDM4NzIsImV4cCI6MTc0Mjc0NzQ3Miwicm9sZXMiOlsiUk9MRV9BU1NJU1RBTlQiLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhc3Npc3RhbnRAc3BlZWR2ZXRvLmZyIiwiZmlyc3RuYW1lIjoiQXNzaXN0YW50In0.GHqJNKcbFQ4gx5vNUbfRIMLKAhhSG2iqWrgnN8pbEbFOTB20MGP5MoIDPfshPs1euyFSHKNm04dd8TuwsD4itRDrI9MCA6Wr0C1SUXVTnwn3pZhLSZCyH3IEJXRagZ4Qam-WAuWaxnF6cpGP026ehST-v7Kc0E8Wxk6UJqMm912CvFE-gzmUkXW4OAioZOdvspgSm9V41F8-LMqyv8X7PYiN8-J-jGNt8ecNeVqBlWJknB3Oh7ddBQxg6EJwDzEfWSbin8ltqA_e5FsfqJZFOdmjU4fIUnt_RUWeoBgMgHXOGdok9OoF0VeshxqoGYKurCyf5-xYimlDigH41_K1_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"TestClient\",\r\n    \"lastname\": \"TestClient\",\r\n    \"email\": \"client@speedveto.fr\",\r\n    \"phone\": \"0102030405\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8000/api/clients",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
